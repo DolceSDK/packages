@@ -1,0 +1,12 @@
+diff --git a/libavformat/file.c b/libavformat/file.c
+--- a/libavformat/file.c	Sat Nov 17 18:58:00 2018
++++ b/libavformat/file.c	Fri Mar  6 19:35:23 2020
+@@ -170,7 +170,7 @@
+     const char *filename = h->filename;
+     av_strstart(filename, "file:", &filename);
+ 
+-    ret = rmdir(filename);
++    ret = 0;
+     if (ret < 0 && errno == ENOTDIR)
+         ret = unlink(filename);
+     if (ret < 0)

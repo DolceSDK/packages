@@ -1,0 +1,19 @@
+pkgname=lame
+pkgver=3.100
+pkgrel=1
+url="https://lame.sourceforge.net/"
+source=("https://sourceforge.net/projects/lame/files/lame/$pkgver/lame-$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+  cd $pkgname-$pkgver
+  export CFLAGS="-Wl,-q -O3 -mfpu=neon -fomit-frame-pointer -ffast-math -march=armv7-a -mfloat-abi=hard"
+  export CXXFLAGS=$CFLAGS
+  ./configure --host=arm-vita-eabi --prefix=$prefix --disable-shared --enable-static --disable-frontend --enable-static --disable-gtktest 
+  make -j$(nproc)
+}
+
+package () {
+  cd $pkgname-$pkgver
+  make DESTDIR=$pkgdir install
+}
