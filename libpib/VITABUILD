@@ -1,0 +1,20 @@
+pkgname=libpib
+pkgver=1.1
+pkgrel=1
+url="https://github.com/SonicMastr/Pigs-In-A-Blanket/"
+source=("https://github.com/SonicMastr/Pigs-In-A-Blanket/archive/$pkgver.tar.gz")
+sha256sums=('8613b13b20a5a2f35b1c6451336ad5733656d9eb3f4c2c7c0d2cbb1f753feb6f')
+
+prepare() {
+  mv Pigs-In-A-Blanket-$pkgver $pkgname-$pkgver
+}
+
+build() {
+  cd $pkgname-$pkgver
+  make -j$(nproc)
+}
+
+package () {
+  cd $pkgname-$pkgver
+  make DESTDIR=$pkgdir install
+}
