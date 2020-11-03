@@ -98,6 +98,7 @@ manifest=(
 	'libShellAudio',
 	'psp2dbg',
 	'box2d',
+	'libpib',
 )
 
 print('''\
