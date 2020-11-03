@@ -32,6 +32,7 @@ stages:
   - build-stage-5
   - build-stage-6
   - build-stage-7
+  - build-stage-8
 jobs:
   include:
     - stage: prepare
@@ -169,6 +170,15 @@ jobs:
         - .travis.d/build.sh "libShellAudio"
         - .travis.d/build.sh "psp2dbg"
         - .travis.d/build.sh "box2d"
+    - stage: build-stage-8
+      workspaces:
+        use: build-stage-7
+        create:
+          name: build-stage-8
+          paths: "$TRAVIS_BUILD_DIR"
+      script:
+        - set -e
+        - .travis.d/build.sh "libpib"
       deploy:
         provider: releases
         api_key:
