@@ -15,3 +15,53 @@ index ff3763c..2cdf1fb 100644
  end
  
  if _OPTIONS["with-jack"] then
+@@ -769,7 +769,7 @@
+ end
+ 
+ if (WITH_VITA_HOMEBREW == 1) then
+-		defines { "WITH_VITA_HOMEBREW", "usleep=sceKernelDelayThread" }
++		
+ 	files {
+ 	  "../src/backend/vita_homebrew/**.c*"
+ 	  }
+--- a/src/core/soloud_thread.cpp	2020-11-18 16:26:13.054576127 +0300
++++ b/src/core/soloud_thread.cpp	2020-11-18 16:28:58.020662610 +0300
+@@ -29,6 +29,8 @@
+ #include <pthread.h>
+ #include <unistd.h>
+ #include <time.h>
++#include <psp2/kernel/processmgr.h>
++#include <psp2/kernel/threadmgr.h>
+ #endif
+ 
+ #include "soloud.h"
+@@ -202,10 +204,11 @@
+ 		void sleep(int aMSec)
+ 		{
+ 			//usleep(aMSec * 1000);
+-			struct timespec req = {0};
+-			req.tv_sec = 0;
+-			req.tv_nsec = aMSec * 1000000L;
+-			nanosleep(&req, (struct timespec *)NULL);
++			sceKernelDelayThread(aMSec * 1000);
++//			struct timespec req = {0};
++//			req.tv_sec = 0;
++//			req.tv_nsec = aMSec * 1000000L;
++//			nanosleep(&req, (struct timespec *)NULL);
+ 		}
+ 
+         void wait(ThreadHandle aThreadHandle)
+@@ -220,9 +223,10 @@
+ 
+ 		int getTimeMillis()
+ 		{
+-			struct timespec spec;
+-			clock_gettime(CLOCK_REALTIME, &spec);
+-			return spec.tv_sec * 1000 + (int)(spec.tv_nsec / 1.0e6);
++		    return sceKernelGetProcessTimeWide();
++//			struct timespec spec;
++//			clock_gettime(CLOCK_REALTIME, &spec);
++//			return spec.tv_sec * 1000 + (int)(spec.tv_nsec / 1.0e6);
+ 		}
+ #endif
+ 
