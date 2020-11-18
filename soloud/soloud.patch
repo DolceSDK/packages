@@ -20,7 +20,7 @@ index ff3763c..2cdf1fb 100644
  
  if (WITH_VITA_HOMEBREW == 1) then
 -		defines { "WITH_VITA_HOMEBREW", "usleep=sceKernelDelayThread" }
-+		
++		defines { "WITH_VITA_HOMEBREW" }
  	files {
  	  "../src/backend/vita_homebrew/**.c*"
  	  }
