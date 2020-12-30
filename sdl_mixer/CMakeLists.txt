@@ -67,8 +67,6 @@ add_library(SDL_mixer STATIC
   music_mod.c
   music_modplug.c
   music_ogg.c
-  playmus.c
-  playwave.c
   wavestream.c
 )
 

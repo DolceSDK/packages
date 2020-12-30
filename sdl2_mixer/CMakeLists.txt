@@ -62,8 +62,6 @@ add_library(SDL2_mixer STATIC
   music_opus.c
   music_timidity.c
   music_wav.c
-  playmus.c
-  playwave.c
 )
 
 install(TARGETS SDL2_mixer DESTINATION lib)
