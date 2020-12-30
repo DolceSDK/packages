@@ -35,6 +35,7 @@ add_compile_options(
 add_compile_definitions(
   FLAC_MUSIC
   MOD_MUSIC
+  USE_TIMIDITY_MIDI
   MODPLUG_MUSIC
   OGG_MUSIC
   WAV_MUSIC
@@ -70,6 +71,15 @@ add_library(SDL_mixer STATIC
   playmus.c
   playwave.c
   wavestream.c
+  timidity/common.c
+  timidity/instrum.c
+  timidity/mix.c
+  timidity/output.c
+  timidity/playmidi.c
+  timidity/readmidi.c
+  timidity/resample.c
+  timidity/tables.c
+  timidity/timidity.c
 )
 
 install(TARGETS SDL_mixer DESTINATION lib)
