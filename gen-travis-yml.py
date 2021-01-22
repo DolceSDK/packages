@@ -100,6 +100,7 @@ manifest=(
 	'box2d',
 	'libpib',
 	'glfw',
+	'physfs',
 )
 
 print('''\

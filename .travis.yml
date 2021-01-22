@@ -180,6 +180,7 @@ jobs:
         - set -e
         - .travis.d/build.sh "libpib"
         - .travis.d/build.sh "glfw"
+        - .travis.d/build.sh "physfs"
       deploy:
         provider: releases
         api_key:
