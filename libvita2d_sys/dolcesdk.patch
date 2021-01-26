@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 83999c3..edb74a4 100644
+index 83999c3..6b64863 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -10,8 +10,22 @@ endif()
@@ -59,7 +59,7 @@ index 83999c3..edb74a4 100644
  
 +install(FILES ${CMAKE_SOURCE_DIR}/include/vita2d_sys.h DESTINATION include)
 +install(FILES $<TARGET_FILE:vita2d_sys_stub> $<TARGET_FILE:vita2d_sys_stub_weak> DESTINATION lib)
-+install(FILES $<TARGET_FILE:${PROJECT_NAME}.suprx_> DESTINATION module)
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.suprx DESTINATION module)
 diff --git a/Makefile b/Makefile
 index 000371a..3ee8fc4 100644
 --- a/Makefile

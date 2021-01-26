@@ -1,20 +1,7 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index b727bb4..a847aac 100644
+index 6613972..a847aac 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -39,9 +39,9 @@ target_link_libraries(${PROJECT_NAME}
-   SceLibKernel_stub_weak
-   SceIofilemgr_stub_weak 	
-   SceSysmodule_stub_weak 
--  SceCodecEngine_stub_weak 
--  SceKernelThreadMgr_stub_weak
--  SceAudiodec_stub_weak 
-+  SceCodecEngineUser_stub_weak
-+  SceThreadmgr_stub_weak
-+  SceAudiodecUser_stub_weak
-   SceAudio_stub_weak  
-   SceDbg_stub_weak 
-   SceSas_stub_weak 
 @@ -61,6 +61,9 @@ dolce_create_self(${PROJECT_NAME}.suprx ${PROJECT_NAME}
  dolce_create_stubs(${PROJECT_NAME}_stubs 
    ${PROJECT_NAME} 
@@ -39,27 +26,3 @@ index d75d998..8c64136 100644
  ASFLAGS = $(CFLAGS)
  
  all: $(TARGET_LIB)
-diff --git a/include/vitaSAS.h b/include/vitaSAS.h
-index ba7a8a3..84fde52 100644
---- a/include/vitaSAS.h
-+++ b/include/vitaSAS.h
-@@ -1,6 +1,7 @@
- #ifndef VITASAS_H
- #define VITASAS_H
- 
-+#include <psp2/scebase_common.h>
- #include <psp2/audiodec.h> 
- #include <psp2/audioout.h>
- 
-@@ -16,10 +17,8 @@ extern "C" {
- 
- //#define VITASAS_PRX
- 
--#if _SCE_TARGET_OS_PSP2
--#ifdef VITASAS_PRX
-+#if _SCE_HOST_COMPILER_SNC && defined(VITASAS_PRX)
- #define PRX_INTERFACE __declspec (dllexport)
--#endif
- #else
- #define PRX_INTERFACE
- #endif

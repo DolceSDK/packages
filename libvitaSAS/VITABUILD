@@ -1,9 +1,9 @@
 pkgname=libvitaSAS
-pkgver=1.20
+pkgver=1.21
 pkgrel=1
 url='https://github.com/GrapheneCt/libvitaSAS'
 source=("https://github.com/GrapheneCt/libvitaSAS/archive/v${pkgver}.tar.gz" dolcesdk.patch)
-sha256sums=(8ce1cb28e97d53ad6ad271337bc845af4418070ec6b795265d397f97fb31a65d SKIP)
+sha256sums=(1b08c1422f830a1722f87d2652ddb6332842b8c14796f6cd5da5cefeb68c0e45 SKIP)
 
 prepare() {
   cd "${pkgname}-${pkgver}"
