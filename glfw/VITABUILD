@@ -1,9 +1,9 @@
 pkgname=glfw-vita
-pkgver=vita1.0
+pkgver=1.10
 pkgrel=1
 url="https://github.com/SonicMastr/${pkgname}"
 source=("https://github.com/SonicMastr/${pkgname}/archive/${pkgver}.tar.gz")
-sha256sums=(3d11f05e301cdee0818a141e606077c8dab5e226e623149a863b240ce55089ff)
+sha256sums=(24ea878047e5a8d74d57da07bcb446fa87fe93d87e566f7867a13a19d8fc6b29)
 
 build() {
   cd "${pkgname}-${pkgver}"
