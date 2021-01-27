@@ -1,19 +1,18 @@
 pkgname=minizip
-pkgver=2.9.1
+pkgver=3.0.0
 pkgrel=1
-url="https://github.com/nmoinvaz/minizip"
-source=("https://github.com/nmoinvaz/minizip/archive/$pkgver.zip")
-sha256sums=('8ffe1fdb1d247fc484d1b0b87fdc71f68f3e9ad7c35b3d34a191e00b941df614')
+url='https://github.com/zlib-ng/minizip-ng'
+source=("https://github.com/zlib-ng/minizip-ng/archive/${pkgver}.tar.gz")
+sha256sums=(13b4afd96fbf2456f441a32dc9f5d3c983a5ece9e6a3903fc9322c8ad5518546)
 
 build() {
-  cd minizip-$pkgver
-  sed -i '1 i\#define MZ_VERSION_MADEBY_HOST_SYSTEM (MZ_HOST_SYSTEM_UNIX)' mz_os.h
+  cd minizip-ng-$pkgver
   mkdir build && cd build
   cmake .. -DCMAKE_TOOLCHAIN_FILE=$DOLCESDK/share/dolce.toolchain.cmake -DCMAKE_INSTALL_PREFIX=$prefix
   make -j$(nproc)
 }
 
 package () {
-  cd minizip-$pkgver/build
+  cd minizip-ng-$pkgver/build
   make DESTDIR=$pkgdir install
 }
