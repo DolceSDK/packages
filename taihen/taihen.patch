@@ -1,0 +1,31 @@
+diff --git a/taihen.h b/taihen.h
+index 9f8d401..04ca35e 100644
+--- a/taihen.h
++++ b/taihen.h
+@@ -352,6 +352,26 @@ HELPER SceUID taiHookFunctionOffset(tai_hook_ref_t *p_hook, SceUID modid, int se
+     ((type(*)())next->func)(__VA_ARGS__) \
+   ; \
+ })
++
++/**
++ * @brief      Calls the next function in the chain
++ *             with static type checking
++ *
++ * @param      this_func  The enclosing function
++ * @param      hook  The hook continuing the call
++ *
++ * @return     Return value from the hook chain
++ */
++#define TAI_NEXT(this_func, hook, ...) ({ \
++  struct _tai_hook_user *cur, *next; \
++  cur = (struct _tai_hook_user *)(hook); \
++  next = (struct _tai_hook_user *)cur->next; \
++  (next == NULL) ? \
++    ((__typeof__(&this_func))cur->old)(__VA_ARGS__) \
++  : \
++    ((__typeof__(&this_func))next->func)(__VA_ARGS__) \
++  ; \
++})
+ #else // __GNUC__
+ #error Non-GCC compatible compilers are currently unsupported
+ #endif // __GNUC__
